@@ -1,0 +1,23 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="GetVersionFromGit" BeforeTargets="BeforeBuild">
+    <Message Text="Empress.Labs.PowerShell Version: $(EmpressLabsSemVer)" Importance="High"/>
+
+    <PropertyGroup Condition="'$(EmpressLabsSemVer)' != ''">
+      <RegexGitVersion>^v(.+)-(\d+)-g(.+)</RegexGitVersion>
+      <FileVersion>$([System.Text.RegularExpressions.Regex]::Match($(EmpressLabsSemVer), $(RegexGitVersion)).Groups[1].Value)</FileVersion>
+      <BuildVersion>$([System.Text.RegularExpressions.Regex]::Match($(EmpressLabsSemVer), $(RegexGitVersion)).Groups[1].Value)</BuildVersion>
+      <AdditionalCommits>$([System.Text.RegularExpressions.Regex]::Match($(EmpressLabsSemVer), $(RegexGitVersion)).Groups[2].Value)</AdditionalCommits>
+      <CommitSHA>$([System.Text.RegularExpressions.Regex]::Match($(EmpressLabsSemVer), $(RegexGitVersion)).Groups[3].Value)</CommitSHA>
+
+      <FormattedVersion Condition="'$(AdditionalCommits)' == '0'">$(BuildVersion) SHA: $(CommitSHA)</FormattedVersion>
+      <FormattedVersion Condition="'$(FormattedVersion)' == ''">$(BuildVersion) Commits: $(AdditionalCommits) SHA: $(CommitSHA)</FormattedVersion>
+
+      <Version>$(FileVersion)</Version>
+      <InformationalVersion>$(FormattedVersion)</InformationalVersion>
+      <ProductVersion>$(FormattedVersion)</ProductVersion>
+      <PackageVersion>$(BuildVersion)</PackageVersion>
+    </PropertyGroup>
+  </Target>
+
+</Project>
