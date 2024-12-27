@@ -1,0 +1,4 @@
+{
+  "$schema": "build.schema.json",
+  "Solution": "Empress.Labs.PowerShell.Common.sln"
+}

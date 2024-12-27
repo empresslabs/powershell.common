@@ -21,15 +21,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{2C97D0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{2584C988-02D4-4DD5-977D-7CEED3AF13C2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empress.Labs.Nuke.Build", "source\Empress.Labs.Nuke.Build\Empress.Labs.Nuke.Build.csproj", "{0D6DCA2E-B5D7-474F-918E-01426E53861D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D6DCA2E-B5D7-474F-918E-01426E53861D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D6DCA2E-B5D7-474F-918E-01426E53861D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3B6BCE7B-CA9A-4F21-9901-BA9355AC06C2} = {3E580ECB-460F-4A91-8CE1-E4E6C8729425}
+		{0D6DCA2E-B5D7-474F-918E-01426E53861D} = {2C97D02D-5A7E-491D-AC06-901EE7927527}
 	EndGlobalSection
 EndGlobal
