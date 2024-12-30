@@ -1,12 +1,4 @@
-<p align="center">
-  <a href="#gh-dark-mode-only" target="_blank" rel="noopener noreferrer">
-    <img src=".github/assets/night.svg" alt="empress.labs.powershell.common">
-  </a>
-
-  <a href="#gh-light-mode-only" target="_blank" rel="noopener noreferrer">
-    <img src=".github/assets/day.svg" alt="empress.labs.powershell.common">
-  </a>
-</p>
+# ![Empress.Labs.PowerShell.Common logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)
 
 Common repository for Empress Labs PowerShell modules. Contains shared functions and classes. Determines the `System.Management.Automation` version
 used in the `Empress.Labs.PowerShell` modules.
