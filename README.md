@@ -1,10 +1,10 @@
 <p align="center">
   <a href="#gh-dark-mode-only" target="_blank" rel="noopener noreferrer">
-    <img src=".github/assets/night.svg" alt="pnpm.plugin.zsh">
+    <img src=".github/assets/night.svg" alt="empress.labs.powershell.common">
   </a>
 
   <a href="#gh-light-mode-only" target="_blank" rel="noopener noreferrer">
-    <img src=".github/assets/day.svg" alt="pnpm.plugin.zsh">
+    <img src=".github/assets/day.svg" alt="empress.labs.powershell.common">
   </a>
 </p>
 
