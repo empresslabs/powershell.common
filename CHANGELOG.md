@@ -1,15 +1,16 @@
-<p align="center">
-<a href="#gh-dark-mode-only" target="_blank" rel="noopener noreferrer">
-<img src="https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/night.svg" alt="empress.labs.powershell.common">
-</a>
+# ![Empress.Labs.PowerShell.Common logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)
 
-<a href="#gh-light-mode-only" target="_blank" rel="noopener noreferrer">
-<img src="https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/day.svg" alt="empress.labs.powershell.common">
-</a>
-</p>
-## [0.1.0] - 2024-12-30
+## [0.1.1](https://github.com/empresslabs/powershell.common/compare/v0.1.0..v0.1.1) - 2024-12-30
 
-### ⛰️  Features
+### 🎨 Styling
+
+- Change CHANGELOG header - ([8b03a58](https://github.com/empresslabs/powershell.common/commit/8b03a5815c137e0123bc7a1207871cf3cb1a7661))
+- Remove HTML tags - ([b0f6b05](https://github.com/empresslabs/powershell.common/commit/b0f6b05ebd32fa7bb23f3667b2f76c9d6eb55388))
+- Rewrite SVG to use style in dark-mode - ([5834ded](https://github.com/empresslabs/powershell.common/commit/5834ded75403041e642a5fea6d80bf826edb7d48))
+
+## [0.1.0](#) - 2024-12-30
+
+### ⛰️ Features
 
 - Configure nuke.build - ([2a8e7c7](https://github.com/empresslabs/powershell.common/commit/2a8e7c74f56a9828cc3762742d9a587a03ba1e28))
 - Add powershel cmdlet proxy base class - ([7792d74](https://github.com/empresslabs/powershell.common/commit/7792d7467b14141dffb54f4459a656a8119a29d2))
@@ -39,6 +40,7 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- Generate changelog - ([c5b9d2b](https://github.com/empresslabs/powershell.common/commit/c5b9d2b1fd9b8a7185c704d92da7410df7e01379))
 - Add git cliff settings - ([23bb6f5](https://github.com/empresslabs/powershell.common/commit/23bb6f562caef0d5e98b0f4efe98c3e1bd28ba5f))
 - Add build dependencies - ([aa7565e](https://github.com/empresslabs/powershell.common/commit/aa7565e883fd0d566cfd787f8b66026218b6c6ce))
 - Update unit testing packages - ([d09d3c6](https://github.com/empresslabs/powershell.common/commit/d09d3c6922d48da3d430f0f65159603d36235c6e))
@@ -47,6 +49,4 @@
 
 ## New Contributors ❤️
 
-* @baliestri made their first contribution
-
-
+- @baliestri made their first contribution
