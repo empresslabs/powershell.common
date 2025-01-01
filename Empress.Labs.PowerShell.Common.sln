@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		LICENSE.md = LICENSE.md
 		README.md = README.md
+		cliff.toml = cliff.toml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{3B6BCE7B-CA9A-4F21-9901-BA9355AC06C2}"

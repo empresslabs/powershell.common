@@ -19,8 +19,8 @@
 
   <PropertyGroup Label="Package">
     <Authors>Bruno Sales</Authors>
-    <Description>Common utilities for Empress Labs PowerShell modules.</Description>
-    <Copyright>Copyright (c) 2024 Bruno Sales &lt;me@baliestri.dev&gt;</Copyright>
+    <Description>Common utilities for Empress Labs PowerShell binary modules.</Description>
+    <Copyright>Copyright (c) 2024-2025 Bruno Sales &lt;me@baliestri.dev&gt;</Copyright>
     <Company>EmpressLabs</Company>
     <PackageId>Empress.Labs.PowerShell.Common</PackageId>
     <PackageProjectUrl>https://github.com/empresslabs/powershell.common</PackageProjectUrl>
