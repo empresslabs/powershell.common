@@ -12,7 +12,7 @@ repo = "powershell.common"
 [changelog]
 # template for the changelog header
 header = """
-# ![Empress.Labs.PowerShell.Common logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)\n
+# ![logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)\n
 """
 # template for the changelog body
 # https://keats.github.io/tera/docs/#introduction
