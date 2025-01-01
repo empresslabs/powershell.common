@@ -1,4 +1,24 @@
-# ![Empress.Labs.PowerShell.Common logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)
+# ![logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)
+
+## [0.2.0](https://github.com/empresslabs/powershell.common/compare/v0.1.1..v0.2.0) - 2025-01-01
+
+### ⛰️  Features
+
+- Add method extensions for `task` - ([fece741](https://github.com/empresslabs/powershell.common/commit/fece7414f6eb21f8e715491ca66191b4db39156a))
+- Add attribute for `not null or empty` validation - ([a0be632](https://github.com/empresslabs/powershell.common/commit/a0be632d7a4decb4aadd507c5b9ead53a65fbaa0))
+
+### 🎨 Styling
+
+- Minor changes and update license year - ([618b82b](https://github.com/empresslabs/powershell.common/commit/618b82b8ab725f81c1d66108bc3c7fece0bb9083))
+
+### 🧪 Testing
+
+- Add tests for `not null or empty` validation attribute - ([9bfa48c](https://github.com/empresslabs/powershell.common/commit/9bfa48ce9559f3d3db042ed514f2ef3b8885f0b8))
+
+### ⚙️ Miscellaneous Tasks
+
+- Include `CHANGELOG.md` file into solution items - ([258a984](https://github.com/empresslabs/powershell.common/commit/258a9843a94aa954ceed27cdd1e0c79f706398eb))
+
 
 ## [0.1.1](https://github.com/empresslabs/powershell.common/compare/v0.1.0..v0.1.1) - 2024-12-30
 
@@ -8,9 +28,14 @@
 - Remove HTML tags - ([b0f6b05](https://github.com/empresslabs/powershell.common/commit/b0f6b05ebd32fa7bb23f3667b2f76c9d6eb55388))
 - Rewrite SVG to use style in dark-mode - ([5834ded](https://github.com/empresslabs/powershell.common/commit/5834ded75403041e642a5fea6d80bf826edb7d48))
 
-## [0.1.0](#) - 2024-12-30
+### ⚙️ Miscellaneous Tasks
 
-### ⛰️ Features
+- Generate changelog - ([d46b410](https://github.com/empresslabs/powershell.common/commit/d46b410cab4112d77fc23096dff937aeeefc58f6))
+
+
+## [0.1.0] - 2024-12-30
+
+### ⛰️  Features
 
 - Configure nuke.build - ([2a8e7c7](https://github.com/empresslabs/powershell.common/commit/2a8e7c74f56a9828cc3762742d9a587a03ba1e28))
 - Add powershel cmdlet proxy base class - ([7792d74](https://github.com/empresslabs/powershell.common/commit/7792d7467b14141dffb54f4459a656a8119a29d2))
@@ -49,4 +74,6 @@
 
 ## New Contributors ❤️
 
-- @baliestri made their first contribution
+* @baliestri made their first contribution
+
+
