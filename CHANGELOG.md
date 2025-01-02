@@ -1,5 +1,16 @@
 # ![logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)
 
+## [0.2.1](https://github.com/empresslabs/powershell.common/compare/v0.2.0..v0.2.1) - 2025-01-02
+
+### 🐛 Bug Fixes
+
+- Override ToString in absolute path - ([592bfb6](https://github.com/empresslabs/powershell.common/commit/592bfb65e821869148c815df70ec0ca57e75c968))
+
+### ⚙️ Miscellaneous Tasks
+
+- Add release body content from CHANGELOG.md - ([6cdeeb3](https://github.com/empresslabs/powershell.common/commit/6cdeeb3690acd23b8ff7fb3ea2f911fa6bd88232))
+
+
 ## [0.2.0](https://github.com/empresslabs/powershell.common/compare/v0.1.1..v0.2.0) - 2025-01-01
 
 ### ⛰️  Features
@@ -17,6 +28,7 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- Generate changelog - ([6a828d8](https://github.com/empresslabs/powershell.common/commit/6a828d8452a00aef31222e4f125e8ca8774bb11c))
 - Include `CHANGELOG.md` file into solution items - ([258a984](https://github.com/empresslabs/powershell.common/commit/258a9843a94aa954ceed27cdd1e0c79f706398eb))
 
 
