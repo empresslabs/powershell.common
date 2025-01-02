@@ -17,6 +17,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Capture CHANGELOG.md content
+        run: |
+          {
+            echo 'CHANGELOG_CONTENT<<EOF'
+            awk '
+            /^## \[[0-9]+\.[0-9]+\.[0-9]+\]/ {
+                if (in_block) {exit}
+                in_block=1; next
+            }
+            in_block {
+                if (/^## \[[0-9]+\.[0-9]+\.[0-9]+\]/) {print buffer; exit}
+                buffer = buffer $0 "\n"
+            }
+            END {
+                if (in_block) {print buffer}
+            }
+            ' CHANGELOG.md
+            echo EOF
+          } >> "$GITHUB_ENV"
+
       - name: Generate release
         uses: softprops/action-gh-release@v1
         env:
@@ -27,3 +47,4 @@ jobs:
           files: |
             dist/*.zip
             dist/*.tar.gz
+          body: ${{ env.CHANGELOG_CONTENT }}
