@@ -146,4 +146,8 @@ public sealed class AbsolutePath : IEquatable<AbsolutePath> {
   /// <inheritdoc />
   public override int GetHashCode()
     => _fsPath.GetHashCode();
+
+  /// <inheritdoc />
+  public override string ToString()
+    => _fsPath;
 }
