@@ -1,5 +1,23 @@
 # ![logo](https://raw.githubusercontent.com/empresslabs/powershell.common/refs/heads/main/.github/assets/logo.svg)
 
+## [0.3.0](https://github.com/empresslabs/powershell.common/compare/v0.2.1..v0.3.0) - 2025-01-03
+
+### ⛰️  Features
+
+- Use attribute and add writer structure - ([9ec5aca](https://github.com/empresslabs/powershell.common/commit/9ec5aca925ac7ec25ef6ae44456cf65eb687c8f2))
+- Add attribute to define target cmdlet - ([d91e958](https://github.com/empresslabs/powershell.common/commit/d91e95835b4d164c33297eb38d94129d8f221293))
+
+### 🧪 Testing
+
+- Add proxied set location cmdlet tests - ([9deb319](https://github.com/empresslabs/powershell.common/commit/9deb31999f02d26e40f91ead4c1fe83c6682baec))
+- Add proxied set location cmdlet - ([3b79215](https://github.com/empresslabs/powershell.common/commit/3b7921561af7a9ac4a0b06482dc1e21912e4f7af))
+- Add attribute tests - ([85ef35c](https://github.com/empresslabs/powershell.common/commit/85ef35c3ed7c0cbc2788538e4a0408f754be9929))
+
+### ⚙️ Miscellaneous Tasks
+
+- Create end to end testing project - ([f883c94](https://github.com/empresslabs/powershell.common/commit/f883c9476295de3947b5f58c295ce450285dbf1b))
+
+
 ## [0.2.1](https://github.com/empresslabs/powershell.common/compare/v0.2.0..v0.2.1) - 2025-01-02
 
 ### 🐛 Bug Fixes
@@ -8,6 +26,7 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- Generate changelog - ([b4ea580](https://github.com/empresslabs/powershell.common/commit/b4ea5808c7cdd063e8ee0eee27ce48b9fd79a16a))
 - Add release body content from CHANGELOG.md - ([6cdeeb3](https://github.com/empresslabs/powershell.common/commit/6cdeeb3690acd23b8ff7fb3ea2f911fa6bd88232))
 
 
