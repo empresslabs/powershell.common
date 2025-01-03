@@ -9,10 +9,24 @@ namespace Empress.Labs.PowerShell.Common;
 /// <summary>
 ///   Base class for proxying existing PowerShell cmdlets.
 /// </summary>
-/// <param name="targetCmdlet">The target cmdlet to be proxied.</param>
 [ExcludeFromCodeCoverage]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
-public abstract class PSCmdletProxy(string targetCmdlet) : PSCmdlet, IDynamicParameters, IDisposable {
+public abstract class PSCmdletProxy : PSCmdlet, IDynamicParameters, IDisposable {
+  /// <summary>
+  ///   The target cmdlet to proxy.
+  /// </summary>
+  public readonly string TargetCmdlet;
+
+  protected PSCmdletProxy() {
+    var attribute = GetType().GetCustomAttribute<CmdletProxyAttribute>();
+
+    if (attribute is null) {
+      throw new InvalidOperationException("It's necessary to define the target cmdlet with the CmdletProxyAttribute.");
+    }
+
+    TargetCmdlet = attribute.TargetCmdlet;
+  }
+
   /// <summary>
   ///   The steppable pipeline of the cmdlet.
   /// </summary>
@@ -26,7 +40,7 @@ public abstract class PSCmdletProxy(string targetCmdlet) : PSCmdlet, IDynamicPar
 
   /// <inheritdoc />
   public object GetDynamicParameters() {
-    var commandInfo = InvokeCommand.GetCommand(targetCmdlet, CommandTypes.Cmdlet, MyInvocation.BoundParameters.Values.ToArray());
+    var commandInfo = InvokeCommand.GetCommand(TargetCmdlet, CommandTypes.Cmdlet, MyInvocation.BoundParameters.Values.ToArray());
     var dynamicParameters = commandInfo.Parameters.Where(pair => pair.Value.IsDynamic).ToList();
 
     if (dynamicParameters.Count == 0) {
@@ -66,17 +80,17 @@ public abstract class PSCmdletProxy(string targetCmdlet) : PSCmdlet, IDynamicPar
   /// <summary>
   ///   Action to be executed together with <see cref="BeginProcessing" /> method.
   /// </summary>
-  protected virtual void OnBeginProcessing() { }
+  protected virtual void OnBeginProcessing(Writer writer) { }
 
   /// <summary>
   ///   Action to be executed together with <see cref="ProcessRecord" /> method.
   /// </summary>
-  protected virtual void OnProcessRecord() { }
+  protected virtual void OnProcessRecord(Writer writer) { }
 
   /// <summary>
   ///   Action to be executed together with <see cref="EndProcessing" /> method.
   /// </summary>
-  protected virtual void OnEndProcessing() { }
+  protected virtual void OnEndProcessing(Writer writer) { }
 
   /// <inheritdoc />
   protected sealed override void BeginProcessing() {
@@ -84,7 +98,7 @@ public abstract class PSCmdletProxy(string targetCmdlet) : PSCmdlet, IDynamicPar
       MyInvocation.BoundParameters["OutBuffer"] = 1;
     }
 
-    var commandInfo = InvokeCommand.GetCommand(targetCmdlet, CommandTypes.Cmdlet);
+    var commandInfo = InvokeCommand.GetCommand(TargetCmdlet, CommandTypes.Cmdlet);
     var scriptBlock = ScriptBlock.Create("& $CommandInfo @BoundParameters @UnboundArguments");
     SessionState.PSVariable.Set("CommandInfo", commandInfo);
     SessionState.PSVariable.Set("UnboundArguments", MyInvocation.UnboundArguments);
@@ -92,16 +106,48 @@ public abstract class PSCmdletProxy(string targetCmdlet) : PSCmdlet, IDynamicPar
 
     SteppablePipeline = scriptBlock.GetSteppablePipeline(MyInvocation.CommandOrigin);
 
-    Parallel.Invoke(() => SteppablePipeline.Begin(this), OnBeginProcessing);
+    SteppablePipeline.Begin(this);
+    OnBeginProcessing(new Writer {
+      Object = WriteObject,
+      Information = WriteInformation,
+      Error = WriteError,
+      Verbose = WriteVerbose,
+      Warning = WriteWarning,
+      Debug = WriteDebug,
+      Progress = WriteProgress,
+      CommandDetail = WriteCommandDetail
+    });
   }
 
   /// <inheritdoc />
-  protected sealed override void ProcessRecord()
-    => Parallel.Invoke(() => SteppablePipeline?.Process(PipelineDefinedParameters()), OnProcessRecord);
+  protected sealed override void ProcessRecord() {
+    SteppablePipeline?.Process(PipelineDefinedParameters());
+    OnProcessRecord(new Writer {
+      Object = WriteObject,
+      Information = WriteInformation,
+      Error = WriteError,
+      Verbose = WriteVerbose,
+      Warning = WriteWarning,
+      Debug = WriteDebug,
+      Progress = WriteProgress,
+      CommandDetail = WriteCommandDetail
+    });
+  }
 
   /// <inheritdoc />
-  protected sealed override void EndProcessing()
-    => Parallel.Invoke(() => SteppablePipeline?.End(), OnEndProcessing);
+  protected sealed override void EndProcessing() {
+    SteppablePipeline?.End();
+    OnEndProcessing(new Writer {
+      Object = WriteObject,
+      Information = WriteInformation,
+      Error = WriteError,
+      Verbose = WriteVerbose,
+      Warning = WriteWarning,
+      Debug = WriteDebug,
+      Progress = WriteProgress,
+      CommandDetail = WriteCommandDetail
+    });
+  }
 
   /// <inheritdoc />
   protected sealed override void StopProcessing()
@@ -138,4 +184,74 @@ public abstract class PSCmdletProxy(string targetCmdlet) : PSCmdlet, IDynamicPar
   /// <returns>The parameter.</returns>
   protected static TOut GetParameter<TCmdlet, TOut>(TCmdlet cmdlet, Func<TCmdlet, TOut> parameter) where TCmdlet : PSCmdlet
     => parameter(cmdlet);
+
+  /// <summary>
+  ///   The writer to be used in the cmdlet.
+  /// </summary>
+  public readonly record struct Writer {
+    /// <summary>
+    ///   Delegate to write an error record.
+    /// </summary>
+    public delegate void WriteError(ErrorRecord errorRecord);
+
+    /// <summary>
+    ///   Delegate to write an information record.
+    /// </summary>
+    public delegate void WriteInformation(InformationRecord informationRecord);
+
+    /// <summary>
+    ///   Delegate to write an object.
+    /// </summary>
+    public delegate void WriteObject(object sendToPipeline, bool enumerateCollection = false);
+
+    /// <summary>
+    ///   Delegate to write a progress record.
+    /// </summary>
+    public delegate void WriteProgress(ProgressRecord progressRecord);
+
+    /// <summary>
+    ///   Delegate to write a text.
+    /// </summary>
+    public delegate void WriteText(string text);
+
+    /// <summary>
+    ///   Writes an object to the output of the cmdlet.
+    /// </summary>
+    public WriteObject Object { get; init; }
+
+    /// <summary>
+    ///   Writes an information record to the output of the cmdlet.
+    /// </summary>
+    public WriteInformation Information { get; init; }
+
+    /// <summary>
+    ///   Writes an error record to the output of the cmdlet.
+    /// </summary>
+    public WriteError Error { get; init; }
+
+    /// <summary>
+    ///   Writes a verbose text to the output of the cmdlet.
+    /// </summary>
+    public WriteText Verbose { get; init; }
+
+    /// <summary>
+    ///   Writes a warning text to the output of the cmdlet.
+    /// </summary>
+    public WriteText Warning { get; init; }
+
+    /// <summary>
+    ///   Writes a debug text to the output of the cmdlet.
+    /// </summary>
+    public WriteText Debug { get; init; }
+
+    /// <summary>
+    ///   Writes a progress record to the output of the cmdlet.
+    /// </summary>
+    public WriteProgress Progress { get; init; }
+
+    /// <summary>
+    ///   Writes a command detail text to the output of the cmdlet.
+    /// </summary>
+    public WriteText CommandDetail { get; init; }
+  }
 }
